@@ -1,4 +1,6 @@
 """ Markdown utils. """
+import copy
+
 try:
     from django.urls import reverse
 except:
@@ -46,7 +48,11 @@ def editor_js_initialization(selector, **extra_settings):
     options.update(extra_settings)
     # ctx = Context(dict(
     #     selector=selector, extra_settings=simplejson.dumps(options)),
-    # autoescape=False)
+    #     autoescape=False)
+
+    # I just want to modify autoescape, if you have a better way, please tell me.
     ctx = dict(selector=selector, extra_settings=simplejson.dumps(options))
-    INIT_TEMPLATE.backend.engine.autoescape = False
+    backend = copy.deepcopy(INIT_TEMPLATE.backend)
+    backend.engine.autoescape = False
+    INIT_TEMPLATE.backend = backend
     return INIT_TEMPLATE.render(ctx)
