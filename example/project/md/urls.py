@@ -1,5 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 
-urlpatterns = patterns('',
-    url(r'^$', 'project.md.views.home'),
-)
+from .views import home
+
+urlpatterns = [
+    url(r'^$', home)
+]

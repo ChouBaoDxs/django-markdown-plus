@@ -27,13 +27,15 @@ class MarkdownWidget(forms.Textarea):
     def __init__(self, attrs=None):
         super(MarkdownWidget, self).__init__(attrs)
 
-    def render(self, name, value, attrs=None):
+    # def render(self, name, value, attrs=None): django < 1.11
+    # def render(self, name, value, attrs=None, renderer=None): django >= 1.11
+    def render(self, name, value, attrs=None, *args, **kwargs):
         """ Render widget.
 
         :returns: A rendered HTML
 
         """
-        html = super(MarkdownWidget, self).render(name, value, attrs)
+        html = super(MarkdownWidget, self).render(name, value, attrs, *args, **kwargs)
         attrs = self.build_attrs(attrs)
         html += editor_js_initialization("#%s" % attrs['id'])
         return mark_safe(html)
