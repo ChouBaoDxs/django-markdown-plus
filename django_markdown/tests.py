@@ -61,7 +61,11 @@ class DjangoMarkdownViewsTest(TestCase):
 
     def test_preview_MARKDOWN_PROTECT_PREVIEW(self):
         # monkey patching
-        from . import settings
+        # from . import settings
+        # settings.MARKDOWN_PROTECT_PREVIEW = True
+
+        from importlib import import_module
+        settings = import_module('django_markdown.settings')
         settings.MARKDOWN_PROTECT_PREVIEW = True
 
         response = self.client.get('/markdown/preview/', data=self.data)

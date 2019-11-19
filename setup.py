@@ -31,14 +31,14 @@ install_requires = [l for l in _read('requirements.txt').split('\n')
                     if l and not l.startswith('#')]
 
 setup(
-    name=_project,
+    name='django-markdown-plus',
     version=_version,
     description=_read('DESCRIPTION'),
     long_description=_read('README.rst'),
     license=_license,
 
-    author="Kirill Klenov",
-    author_email="horneds@gmail.com",
+    author="Dong",
+    author_email="choubaodxs@163.com",
     url="https://github.com/klen/django_markdown",
 
     keywords='html markdown django',
